@@ -2,23 +2,23 @@ package com.example.avtoelon;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.SearchView;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.avtoelon.adapter.RvAdapter;
 import com.example.avtoelon.data.Data;
-import com.example.avtoelon.listener.OnProductItemClickListener;
+import com.example.avtoelon.fragment.AllFragment;
+import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.model.AutoCar;
 
-import java.util.List;
+import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements OnProductItemClickListener {
+public class MainActivity extends AppCompatActivity implements IOpenInfoActivityListener {
 
-    private List<AutoCar> autoList;
+    private ArrayList<AutoCar> autoList;
 
     RvAdapter adapter;
 
@@ -28,18 +28,26 @@ public class MainActivity extends AppCompatActivity implements OnProductItemClic
         setContentView(R.layout.activity_main);
 
         autoList = Data.getAutoList();
-        RecyclerView recyclerView = findViewById(R.id.rv);
-        AppCompatButton savedBtn = findViewById(R.id.saved_btn);
+        //    RecyclerView recyclerView = findViewById(R.id.rv);
+        //   AppCompatButton savedBtn = findViewById(R.id.saved_btn);
 
-        SearchView searchView = findViewById(R.id.search_view);
+        //   SearchView searchView = findViewById(R.id.search_view);
         AppCompatButton homeBtn = findViewById(R.id.home_btn);
 
+        setAllFragment();
 
-        adapter = new RvAdapter(autoList, this);
+       /* adapter = new RvAdapter(autoList, this);
         recyclerView.setAdapter(adapter);
-        onButtonClick(savedBtn, SavedActivity.class);
+        onButtonClick(savedBtn, SavedActivity.class);*/
 
 
+    }
+
+    private void setAllFragment() {
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.mainFrame, AllFragment.getInstance(autoList, this))
+                .commit();
     }
 
     private void onButtonClick(AppCompatButton button, Class activity) {
@@ -52,16 +60,12 @@ public class MainActivity extends AppCompatActivity implements OnProductItemClic
     }
 
     @Override
-    public void onItemClick(AutoCar car, int position) {
+    public void openInfoActivity(AutoCar car) {
+        Log.d("admin123", "davay");
+        Log.d("admin123", car.toString());
         Toast.makeText(this, car.getName(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(this, InfoActivity.class);
         intent.putExtra("car", car);
         startActivity(intent);
-    }
-
-    @Override
-    public void onItemDelete(AutoCar car, int position) {
-        autoList.remove(car);
-        adapter.notifyItemRemoved(position);
     }
 }

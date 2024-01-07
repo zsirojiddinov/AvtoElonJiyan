@@ -91,8 +91,8 @@ public class Data {
             "https://kluz-photos-alakt.kcdn.online/webp/9d/9d43c6c1-8233-4716-9569-24fecb205177/2-240x180.jpg"
     );
 
-    public static List<AutoCar> getAutoList() {
-        List<AutoCar> autoCarList = new ArrayList<>();
+    public static ArrayList<AutoCar> getAutoList() {
+        ArrayList<AutoCar> autoCarList = new ArrayList<>();
         autoCarList.add(new AutoCar(1, "Equinox ", "Chevrolet ", "", "2021 yil ", "Samarqand ",
                 "32 000 km ", "Kulrang ", 36000, "23 Yanvar ", 2354, Arrays.asList(imageList.get(0), imageList.get(1), imageList.get(2))));
         autoCarList.add(new AutoCar(2, "Cobalt ", "Chevrolet ", "2", "2015 yil ", "Namangan ",

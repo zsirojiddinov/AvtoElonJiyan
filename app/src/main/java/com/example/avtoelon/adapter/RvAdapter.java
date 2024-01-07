@@ -46,6 +46,10 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyVH> {
         holder.itemView.setOnClickListener(view -> listener.onItemClick(list.get(position), position));
 
         holder.delete.setOnClickListener(v -> listener.onItemDelete(list.get(position), position));
+        holder.like.setOnClickListener(v -> listener.onChangeLike(list.get(position), position));
+        if (list.get(position).isLike()) {
+            holder.like.setBackgroundResource(R.drawable.ic_like_true);
+        } else holder.like.setBackgroundResource(R.drawable.ic_like_false);
     }
 
     @Override
@@ -63,6 +67,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyVH> {
         TextView showCount;
         ImageView image;
         ImageView delete;
+        ImageView like;
 
 
         public MyVH(@NonNull View itemView) {
@@ -76,6 +81,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyVH> {
             showCount = itemView.findViewById(R.id.showCount);
             image = itemView.findViewById(R.id.image);
             delete = itemView.findViewById(R.id.deleteIcon);
+            like = itemView.findViewById(R.id.saveIcon);
         }
     }
 

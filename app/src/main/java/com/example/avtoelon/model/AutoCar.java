@@ -1,9 +1,13 @@
 package com.example.avtoelon.model;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 import java.util.List;
 
-public class AutoCar implements Serializable {
+public class AutoCar implements Parcelable {
     private int id;
     private String name;
     private String company;
@@ -37,6 +41,34 @@ public class AutoCar implements Serializable {
         this.imageList = imageList;
         this.isLike = false;
     }
+
+    protected AutoCar(Parcel in) {
+        id = in.readInt();
+        name = in.readString();
+        company = in.readString();
+        position = in.readString();
+        year = in.readString();
+        region = in.readString();
+        odometer = in.readString();
+        color = in.readString();
+        price = in.readDouble();
+        publishedDate = in.readString();
+        show_count = in.readInt();
+        imageList = in.createStringArrayList();
+        isLike = in.readByte() != 0;
+    }
+
+    public static final Creator<AutoCar> CREATOR = new Creator<AutoCar>() {
+        @Override
+        public AutoCar createFromParcel(Parcel in) {
+            return new AutoCar(in);
+        }
+
+        @Override
+        public AutoCar[] newArray(int size) {
+            return new AutoCar[size];
+        }
+    };
 
     @Override
     public String toString() {
@@ -159,5 +191,27 @@ public class AutoCar implements Serializable {
 
     public void setLike(boolean like) {
         isLike = like;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeString(company);
+        dest.writeString(position);
+        dest.writeString(year);
+        dest.writeString(region);
+        dest.writeString(odometer);
+        dest.writeString(color);
+        dest.writeDouble(price);
+        dest.writeString(publishedDate);
+        dest.writeInt(show_count);
+        dest.writeStringList(imageList);
+        dest.writeByte((byte) (isLike ? 1 : 0));
     }
 }

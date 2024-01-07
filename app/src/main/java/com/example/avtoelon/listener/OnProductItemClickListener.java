@@ -6,4 +6,6 @@ public interface OnProductItemClickListener {
     void onItemClick(AutoCar car, int position);
 
     void onItemDelete(AutoCar car, int position);
+
+    void onChangeLike(AutoCar car, int position);
 }

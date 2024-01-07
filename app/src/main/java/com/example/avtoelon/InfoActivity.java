@@ -1,8 +1,5 @@
 package com.example.avtoelon;
 
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -11,10 +8,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.avtoelon.model.AutoCar;
 import com.squareup.picasso.Picasso;
-
-import java.io.Serializable;
 
 public class InfoActivity extends AppCompatActivity {
 
@@ -35,7 +33,7 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
         Intent intent = getIntent();
-        AutoCar car = (AutoCar) intent.getSerializableExtra("car");
+        AutoCar car =  intent.getParcelableExtra("car");
 
         titleTv = findViewById(R.id.titleTv);
         image = findViewById(R.id.carImage);
@@ -47,7 +45,7 @@ public class InfoActivity extends AppCompatActivity {
         colorTv = findViewById(R.id.colorTv);
         backButton = findViewById(R.id.backBtn);
 
-        Picasso.get().load(car.getImageList().get(1)).into(image);
+        Picasso.get().load(car.getImageList().get(0)).into(image);
         carName.setText(car.getName());
         carPrice.setText((int) car.getPrice() + " $");
         regionTv.setText(car.getRegion());
@@ -60,7 +58,7 @@ public class InfoActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder alertDialogBuilder=new AlertDialog.Builder(InfoActivity.this);
+                AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(InfoActivity.this);
 
                 alertDialogBuilder.setTitle("AlertDialog");
                 alertDialogBuilder.setMessage("Confirm to exit").setCancelable(false).setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -74,7 +72,7 @@ public class InfoActivity extends AppCompatActivity {
                         dialogInterface.cancel();
                     }
                 });
-                AlertDialog alertDialog=alertDialogBuilder.create();
+                AlertDialog alertDialog = alertDialogBuilder.create();
                 alertDialog.show();
             }
         });
