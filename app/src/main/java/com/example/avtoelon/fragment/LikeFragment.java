@@ -18,7 +18,6 @@ public class LikeFragment extends Fragment {
     private String mParam2;
 
     public LikeFragment() {
-        // Required empty public constructor
     }
 
     public static LikeFragment newInstance(String param1, String param2) {
