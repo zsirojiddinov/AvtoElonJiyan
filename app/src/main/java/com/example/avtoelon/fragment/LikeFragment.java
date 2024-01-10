@@ -1,5 +1,6 @@
 package com.example.avtoelon.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.avtoelon.R;
 import com.example.avtoelon.adapter.RvAdapter2;
+import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.listener.OnProductItemClickListener;
 import com.example.avtoelon.model.AutoCar;
 
@@ -27,7 +29,12 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
     private RecyclerView rv;
     private RvAdapter2 adapter;
 
-    public LikeFragment(Context context) {
+    private IOpenInfoActivityListener myListener;
+
+    private LikeFragment(Context context) {
+        if (context instanceof IOpenInfoActivityListener)
+            myListener = (IOpenInfoActivityListener) context;
+
     }
 
     public static LikeFragment getInstance(ArrayList<AutoCar> list, Context context) {
@@ -69,7 +76,7 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
 
     @Override
     public void onItemClick(AutoCar car, int position) {
-
+        myListener.openInfoActivity(car);
     }
 
     @Override
@@ -77,8 +84,11 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
 // todo bu ishlamaydi
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public void onChangeLike(AutoCar car, int position) {
-
+        list.get(position).setLike(!list.get(position).isLike());
+        list.remove(car);
+        adapter.notifyDataSetChanged();
     }
 }
