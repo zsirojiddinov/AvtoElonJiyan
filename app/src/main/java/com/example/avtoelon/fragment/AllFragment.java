@@ -3,6 +3,7 @@ package com.example.avtoelon.fragment;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,16 +18,19 @@ import com.example.avtoelon.adapter.RvAdapter;
 import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.listener.OnProductItemClickListener;
 import com.example.avtoelon.model.AutoCar;
+import com.example.avtoelon.model.AutoModel;
+import com.example.avtoelon.service.DbHelper;
 
 import java.util.ArrayList;
 
 public class AllFragment extends Fragment implements OnProductItemClickListener {
 
     private static final String LIST_AVTO_ELON = "listAvtoElon";
-    private ArrayList<AutoCar> list;
+    private ArrayList<AutoModel> list;
 
     private RecyclerView rv;
     RvAdapter adapter;
+    DbHelper dbHelper;
     private IOpenInfoActivityListener myListener;
 
     private AllFragment(Context context) {
@@ -35,7 +39,11 @@ public class AllFragment extends Fragment implements OnProductItemClickListener 
 
     }
 
-    public static AllFragment getInstance(ArrayList<AutoCar> allList, Context context) {
+    public static AllFragment getInstance(Context context) {
+        return new AllFragment(context);
+    }
+
+    public static AllFragment getInstance2(ArrayList<AutoCar> allList, Context context) {
         AllFragment fragment = new AllFragment(context);
         Bundle args = new Bundle();
         args.putParcelableArrayList(LIST_AVTO_ELON, allList);
@@ -46,9 +54,13 @@ public class AllFragment extends Fragment implements OnProductItemClickListener 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            list = getArguments().getParcelableArrayList(LIST_AVTO_ELON);
-        }
+
+
+        dbHelper = new DbHelper(requireContext());
+        list = dbHelper.getAutoList();
+
+        Log.d("admin123", list.size() + "");
+
     }
 
     @Override
@@ -74,28 +86,28 @@ public class AllFragment extends Fragment implements OnProductItemClickListener 
 
 
     @Override
-    public void onItemClick(AutoCar car, int position) {
+    public void onItemClick(AutoModel car, int position) {
         myListener.openInfoActivity(car);
     }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onItemDelete(AutoCar car, int position) {
+    public void onItemDelete(AutoModel car, int position) {
         list.remove(car);
         adapter.notifyDataSetChanged();
     }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onChangeLike(AutoCar car, int position) {
-        list.get(position).setLike(!list.get(position).isLike());
+    public void onChangeLike(AutoModel car, int position) {
+        list.get(position).setLike(list.get(position).isLike() == 1 ? 0 : 1);
         adapter.notifyDataSetChanged();
     }
 
-  public  ArrayList<AutoCar> getLikeList() {
-        ArrayList<AutoCar> likeList = new ArrayList<>();
+    public ArrayList<AutoModel> getLikeList() {
+        ArrayList<AutoModel> likeList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).isLike()) {
+            if (list.get(i).isLike() == 1) {
                 likeList.add(list.get(i));
             }
         }

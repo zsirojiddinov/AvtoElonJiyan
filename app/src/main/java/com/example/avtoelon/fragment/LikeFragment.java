@@ -17,6 +17,7 @@ import com.example.avtoelon.adapter.RvAdapter2;
 import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.listener.OnProductItemClickListener;
 import com.example.avtoelon.model.AutoCar;
+import com.example.avtoelon.model.AutoModel;
 
 import java.util.ArrayList;
 
@@ -25,7 +26,7 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
     private static final String ARG_PARAM1 = "param1";
     private static final String LIST_AUTO = "listAuto";
 
-    ArrayList<AutoCar> list;
+    ArrayList<AutoModel> list;
     private RecyclerView rv;
     private RvAdapter2 adapter;
 
@@ -37,12 +38,16 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
 
     }
 
-    public static LikeFragment getInstance(ArrayList<AutoCar> list, Context context) {
+    public static LikeFragment getInstance2(ArrayList<AutoCar> list, Context context) {
         LikeFragment fragment = new LikeFragment(context);
         Bundle args = new Bundle();
         args.putParcelableArrayList(LIST_AUTO, list);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    public static LikeFragment getInstance(Context context) {
+        return new LikeFragment(context);
     }
 
     @Override
@@ -75,19 +80,19 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
     }
 
     @Override
-    public void onItemClick(AutoCar car, int position) {
+    public void onItemClick(AutoModel car, int position) {
         myListener.openInfoActivity(car);
     }
 
     @Override
-    public void onItemDelete(AutoCar car, int position) {
+    public void onItemDelete(AutoModel car, int position) {
 // todo bu ishlamaydi
     }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onChangeLike(AutoCar car, int position) {
-        list.get(position).setLike(!list.get(position).isLike());
+    public void onChangeLike(AutoModel car, int position) {
+        list.get(position).setLike(list.get(position).isLike() == 1 ? 0 : 1);
         list.remove(car);
         adapter.notifyDataSetChanged();
     }
