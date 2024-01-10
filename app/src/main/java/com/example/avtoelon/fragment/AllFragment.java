@@ -91,5 +91,17 @@ public class AllFragment extends Fragment implements OnProductItemClickListener 
         list.get(position).setLike(!list.get(position).isLike());
         adapter.notifyDataSetChanged();
     }
+
+  public  ArrayList<AutoCar> getLikeList() {
+        ArrayList<AutoCar> likeList = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).isLike()) {
+                likeList.add(list.get(i));
+            }
+        }
+
+        return likeList;
+
+    }
 }
 

@@ -8,9 +8,9 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatButton;
 
-import com.example.avtoelon.adapter.RvAdapter;
 import com.example.avtoelon.data.Data;
 import com.example.avtoelon.fragment.AllFragment;
+import com.example.avtoelon.fragment.LikeFragment;
 import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.model.AutoCar;
 
@@ -20,7 +20,8 @@ public class MainActivity extends AppCompatActivity implements IOpenInfoActivity
 
     private ArrayList<AutoCar> autoList;
 
-    RvAdapter adapter;
+    AppCompatButton saveBtn;
+    AppCompatButton homeBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,25 +29,33 @@ public class MainActivity extends AppCompatActivity implements IOpenInfoActivity
         setContentView(R.layout.activity_main);
 
         autoList = Data.getAutoList();
-        //    RecyclerView recyclerView = findViewById(R.id.rv);
-        //   AppCompatButton savedBtn = findViewById(R.id.saved_btn);
 
-        //   SearchView searchView = findViewById(R.id.search_view);
-        AppCompatButton homeBtn = findViewById(R.id.home_btn);
+        homeBtn = findViewById(R.id.home_btn);
+
+        saveBtn = findViewById(R.id.saved_btn);
 
         setAllFragment();
 
-       /* adapter = new RvAdapter(autoList, this);
-        recyclerView.setAdapter(adapter);
-        onButtonClick(savedBtn, SavedActivity.class);*/
-
+        homeBtn.setOnClickListener(v -> setAllFragment());
+        saveBtn.setOnClickListener(v -> setLikeFragment());
 
     }
 
-    private void setAllFragment() {
+    private void setLikeFragment() {
         getSupportFragmentManager()
                 .beginTransaction()
-                .add(R.id.mainFrame, AllFragment.getInstance(autoList, this))
+                .add(R.id.mainFrame, LikeFragment.getInstance(instance.getLikeList(), this))
+                .commit();
+    }
+
+    AllFragment instance;
+
+    private void setAllFragment() {
+
+        instance = AllFragment.getInstance(autoList, this);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.mainFrame, instance)
                 .commit();
     }
 
