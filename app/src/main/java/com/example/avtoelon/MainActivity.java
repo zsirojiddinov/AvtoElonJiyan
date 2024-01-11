@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements IOpenInfoActivity
 
      //   writeDatabase();
 
-        setAllFragment();
+   //     setAllFragment();
 
         homeBtn.setOnClickListener(v -> setAllFragment());
         saveBtn.setOnClickListener(v -> setLikeFragment());
