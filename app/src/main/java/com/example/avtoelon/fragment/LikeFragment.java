@@ -17,7 +17,6 @@ import com.example.avtoelon.adapter.RvAdapter2;
 import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.listener.OnProductItemClickListener;
 import com.example.avtoelon.model.AutoCar;
-import com.example.avtoelon.model.AutoModel;
 
 import java.util.ArrayList;
 
@@ -26,7 +25,7 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
     private static final String ARG_PARAM1 = "param1";
     private static final String LIST_AUTO = "listAuto";
 
-    ArrayList<AutoModel> list;
+    ArrayList<AutoCar> list;
     private RecyclerView rv;
     private RvAdapter2 adapter;
 
@@ -80,19 +79,19 @@ public class LikeFragment extends Fragment implements OnProductItemClickListener
     }
 
     @Override
-    public void onItemClick(AutoModel car, int position) {
+    public void onItemClick(AutoCar car, int position) {
         myListener.openInfoActivity(car);
     }
 
     @Override
-    public void onItemDelete(AutoModel car, int position) {
+    public void onItemDelete(AutoCar car, int position) {
 // todo bu ishlamaydi
     }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onChangeLike(AutoModel car, int position) {
-        list.get(position).setLike(list.get(position).isLike() == 1 ? 0 : 1);
+    public void onChangeLike(AutoCar car, int position) {
+        list.get(position).setLike(list.get(position).isLike());
         list.remove(car);
         adapter.notifyDataSetChanged();
     }

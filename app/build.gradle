@@ -4,12 +4,12 @@ plugins {
 
 android {
     namespace 'com.example.avtoelon'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.avtoelon"
         minSdk 21
-        targetSdk 33
+        targetSdk 34
         versionCode 1
         versionName "1.0"
 
@@ -39,4 +39,7 @@ dependencies {
 
     // picasso for download image
     implementation 'com.squareup.picasso:picasso:2.8'
+
+    implementation "androidx.room:room-runtime:2.6.1"
+    annotationProcessor "androidx.room:room-compiler:2.6.1"
 }

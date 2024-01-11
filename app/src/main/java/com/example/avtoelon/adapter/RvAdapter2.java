@@ -13,16 +13,15 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.avtoelon.R;
 import com.example.avtoelon.listener.OnProductItemClickListener;
 import com.example.avtoelon.model.AutoCar;
-import com.example.avtoelon.model.AutoModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.MyVH> {
-    List<AutoModel> list;
+    List<AutoCar> list;
     OnProductItemClickListener listener;
 
-    public RvAdapter2(List<AutoModel> list, OnProductItemClickListener listener) {
+    public RvAdapter2(List<AutoCar> list, OnProductItemClickListener listener) {
         this.list = list;
         this.listener = listener;
     }
@@ -43,14 +42,14 @@ public class RvAdapter2 extends RecyclerView.Adapter<RvAdapter2.MyVH> {
         holder.odometer.setText(String.valueOf(list.get(position).getOdometer()));
         holder.date.setText(list.get(position).getPublishedDate());
         holder.showCount.setText(String.valueOf(list.get(position).getShow_count()));
-        Picasso.get().load(list.get(position).getImageList()).into(holder.image);
+        Picasso.get().load(list.get(position).getImageList().get(0)).into(holder.image);
         holder.itemView.setOnClickListener(view -> listener.onItemClick(list.get(position), position));
 
         holder.delete.setVisibility(View.GONE);
 
         holder.delete.setOnClickListener(v -> listener.onItemDelete(list.get(position), position));
         holder.like.setOnClickListener(v -> listener.onChangeLike(list.get(position), position));
-        if (list.get(position).isLike()==1) {
+        if (list.get(position).isLike()) {
             holder.like.setBackgroundResource(R.drawable.ic_like_true);
         } else holder.like.setBackgroundResource(R.drawable.ic_like_false);
     }

@@ -18,19 +18,16 @@ import com.example.avtoelon.adapter.RvAdapter;
 import com.example.avtoelon.listener.IOpenInfoActivityListener;
 import com.example.avtoelon.listener.OnProductItemClickListener;
 import com.example.avtoelon.model.AutoCar;
-import com.example.avtoelon.model.AutoModel;
-import com.example.avtoelon.service.DbHelper;
 
 import java.util.ArrayList;
 
 public class AllFragment extends Fragment implements OnProductItemClickListener {
 
     private static final String LIST_AVTO_ELON = "listAvtoElon";
-    private ArrayList<AutoModel> list;
+    private ArrayList<AutoCar> list;
 
     private RecyclerView rv;
     RvAdapter adapter;
-    DbHelper dbHelper;
     private IOpenInfoActivityListener myListener;
 
     private AllFragment(Context context) {
@@ -56,8 +53,8 @@ public class AllFragment extends Fragment implements OnProductItemClickListener 
         super.onCreate(savedInstanceState);
 
 
-        dbHelper = new DbHelper(requireContext());
-        list = dbHelper.getAutoList();
+        /*dbHelper = new DbHelper(requireContext());
+        list = dbHelper.getAutoList();*/
 
         Log.d("admin123", list.size() + "");
 
@@ -86,28 +83,28 @@ public class AllFragment extends Fragment implements OnProductItemClickListener 
 
 
     @Override
-    public void onItemClick(AutoModel car, int position) {
+    public void onItemClick(AutoCar car, int position) {
         myListener.openInfoActivity(car);
     }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onItemDelete(AutoModel car, int position) {
+    public void onItemDelete(AutoCar car, int position) {
         list.remove(car);
         adapter.notifyDataSetChanged();
     }
 
     @SuppressLint("NotifyDataSetChanged")
     @Override
-    public void onChangeLike(AutoModel car, int position) {
-        list.get(position).setLike(list.get(position).isLike() == 1 ? 0 : 1);
+    public void onChangeLike(AutoCar car, int position) {
+        list.get(position).setLike(list.get(position).isLike());
         adapter.notifyDataSetChanged();
     }
 
-    public ArrayList<AutoModel> getLikeList() {
-        ArrayList<AutoModel> likeList = new ArrayList<>();
+    public ArrayList<AutoCar> getLikeList() {
+        ArrayList<AutoCar> likeList = new ArrayList<>();
         for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).isLike() == 1) {
+            if (list.get(i).isLike()) {
                 likeList.add(list.get(i));
             }
         }
