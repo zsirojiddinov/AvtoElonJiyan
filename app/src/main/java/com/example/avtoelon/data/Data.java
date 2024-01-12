@@ -94,45 +94,45 @@ public class Data {
     public static ArrayList<AutoCar> getAutoList() {
         ArrayList<AutoCar> autoCarList = new ArrayList<>();
         autoCarList.add(new AutoCar(1, "Equinox ", "Chevrolet ", "", "2021 yil ", "Samarqand ",
-                "32 000 km ", "Kulrang ", 36000, "23 Yanvar ", 2354, Arrays.asList(imageList.get(0), imageList.get(1), imageList.get(2))));
+                "32 000 km ", "Kulrang ", 36000, "23 Yanvar ", 2354, imageList.get(0), false));
         autoCarList.add(new AutoCar(2, "Cobalt ", "Chevrolet ", "2", "2015 yil ", "Namangan ",
-                "171 000 km ", "Oq ", 10500, "20 Dekabr ", 2484, Arrays.asList(imageList.get(3), imageList.get(4), imageList.get(5))));
+                "171 000 km ", "Oq ", 10500, "20 Dekabr ", 2484, imageList.get(3), false));
         autoCarList.add(new AutoCar(3, "Nexia 3 ", "Chevrolet ", "4", "2019 yil ", "Toshkent ",
-                "83 000 km ", "Oq ", 13000, "2 Yanvar ", 1457, Arrays.asList(imageList.get(6), imageList.get(7), imageList.get(8))));
+                "83 000 km ", "Oq ", 13000, "2 Yanvar ", 1457, imageList.get(6), false));
         autoCarList.add(new AutoCar(4, "Lacestti ", "Chevrolet ", "2", "2012 yil ", "Toshkent ",
-                "135 000 km ", "Oq ", 10300, "13 Yanvar ", 7897, Arrays.asList(imageList.get(9), imageList.get(10), imageList.get(11))));
+                "135 000 km ", "Oq ", 10300, "13 Yanvar ", 7897, imageList.get(9), false));
         autoCarList.add(new AutoCar(5, "Captiva ", "Chevrolet ", "4", "2014 yil ", "Navoiy ",
-                "80 000 km ", "Oq ", 22000, "10 Noyabr ", 4578, Arrays.asList(imageList.get(12), imageList.get(13), imageList.get(14))));
+                "80 000 km ", "Oq ", 22000, "10 Noyabr ", 4578, imageList.get(12), false));
         autoCarList.add(new AutoCar(6, "Cobalt ", "Chevrolet ", "2", "2014 yil ", "Buxoro ",
-                "42 400 km ", "Mokriy asfalt ", 11000, "9 Yanvar ", 6589, Arrays.asList(imageList.get(15), imageList.get(16), imageList.get(17))));
+                "42 400 km ", "Mokriy asfalt ", 11000, "9 Yanvar ", 6589, imageList.get(15), false));
         autoCarList.add(new AutoCar(7, "Malibu ", "Chevrolet ", "3", "2015 yil ", "Andijon ",
-                "93 000 km ", "Xameleon ", 17500, "8 Dekabr ", 7845, Arrays.asList(imageList.get(18), imageList.get(19), imageList.get(20))));
+                "93 000 km ", "Xameleon ", 17500, "8 Dekabr ", 7845, imageList.get(18), false));
         autoCarList.add(new AutoCar(8, "Epica ", "Chevrolet ", "2", "2020 yil ", "Jizzax ",
-                "115 000 km ", "Qora ", 11900, "17 Avgust ", 7145, Arrays.asList(imageList.get(21), imageList.get(22), imageList.get(23))));
+                "115 000 km ", "Qora ", 11900, "17 Avgust ", 7145, imageList.get(21), false));
         autoCarList.add(new AutoCar(9, "Nexia 2 ", "Chevrolet ", "4", "2015 yil ", "Samarqand ",
-                "105 000 km ", "Mokriy asfalt ", 8500, "2 Iyul ", 7412, Arrays.asList(imageList.get(24), imageList.get(25), imageList.get(26))));
+                "105 000 km ", "Mokriy asfalt ", 8500, "2 Iyul ", 7412, imageList.get(24), false));
         autoCarList.add(new AutoCar(10, "Labo ", "Chevrolet ", "", "2021 yil ", "Farg'ona ",
-                "25 000 km ", "Oq ", 7000, "17 Oktabr ", 1458, Arrays.asList(imageList.get(27), imageList.get(28), imageList.get(29))));
+                "25 000 km ", "Oq ", 7000, "17 Oktabr ", 1458, imageList.get(27), false));
         autoCarList.add(new AutoCar(11, "Epica ", "Chevrolet ", "1", "2011 yil ", "Termiz ",
-                "175 000 km ", "Qora ", 8950, "15 Mart ", 1498, Arrays.asList(imageList.get(30), imageList.get(31), imageList.get(32))));
+                "175 000 km ", "Qora ", 8950, "15 Mart ", 1498, imageList.get(30), false));
         autoCarList.add(new AutoCar(12, "Damas ", "Chevrolet ", "", "2020 yil ", "Termiz ",
-                "173 900 km ", "Oq ", 8400, "10 Aprel ", 6523, Arrays.asList(imageList.get(33), imageList.get(34), imageList.get(35))));
+                "173 900 km ", "Oq ", 8400, "10 Aprel ", 6523, imageList.get(33), false));
         autoCarList.add(new AutoCar(13, "Gentra ", "Chevrolet ", "1", "2015 yil ", "Navoiy ",
-                "102 000 km ", "Delfin ", 11800, "20 Yanvar ", 2547, Arrays.asList(imageList.get(36), imageList.get(37), imageList.get(38))));
+                "102 000 km ", "Delfin ", 11800, "20 Yanvar ", 2547, imageList.get(36), false));
         autoCarList.add(new AutoCar(14, "Spark ", "Chevrolet ", "4", "2018 yil ", "Toshkent ",
-                "93 000 km ", "Jigarrang ", 10300, "14 Fevral ", 1489, Arrays.asList(imageList.get(39), imageList.get(40), imageList.get(41))));
+                "93 000 km ", "Jigarrang ", 10300, "14 Fevral ", 1489, imageList.get(39), false));
         autoCarList.add(new AutoCar(15, "Matiz ", "Chevrolet ", "1", "2007 yil ", "Toshkent ",
-                "196 000 km ", "Oq ", 4500, "1 Yanvar ", 2547, Arrays.asList(imageList.get(42), imageList.get(43), imageList.get(44))));
+                "196 000 km ", "Oq ", 4500, "1 Yanvar ", 2547, imageList.get(42), false));
         autoCarList.add(new AutoCar(16, "Lacetti ", "Chevrolet ", "3", "2020 yil ", "Samarqand ",
-                "120 000 km ", "Oq ", 15800, "18 Dekabr ", 2057, Arrays.asList(imageList.get(45), imageList.get(46), imageList.get(47))));
+                "120 000 km ", "Oq ", 15800, "18 Dekabr ", 2057, imageList.get(45), false));
         autoCarList.add(new AutoCar(17, "Captiva ", "Chevrolet ", "3", "2013 yil ", "Jizzax ",
-                "63 000 km ", "Oq ", 18000, "18 Dekabr ", 2609, Arrays.asList(imageList.get(48), imageList.get(49), imageList.get(50))));
+                "63 000 km ", "Oq ", 18000, "18 Dekabr ", 2609, imageList.get(48), false));
         autoCarList.add(new AutoCar(18, "Damas ", "Chevrolet ", "", "2010 yil ", "Farg'ona ",
-                "193 000 km ", "Yashil rang ", 5500, "25 Dekabr ", 8021, Arrays.asList(imageList.get(51), imageList.get(52), imageList.get(53))));
+                "193 000 km ", "Yashil rang ", 5500, "25 Dekabr ", 8021, imageList.get(51), false));
         autoCarList.add(new AutoCar(19, "Spark ", "Chevrolet ", "4", "2023 yil ", "Termiz ",
-                "17 000 km ", "Oq ", 12500, "17 Dekabr ", 4560, Arrays.asList(imageList.get(54), imageList.get(55), imageList.get(56))));
+                "17 000 km ", "Oq ", 12500, "17 Dekabr ", 4560, imageList.get(54), false));
         autoCarList.add(new AutoCar(20, "Lacetti ", "Chevrolet ", "3", "2023 yil ", "Namangan ",
-                "21 000 km ", "Qora ", 19500, "29 Dekabr ", 4203, Arrays.asList(imageList.get(57), imageList.get(58), imageList.get(59))));
+                "21 000 km ", "Qora ", 19500, "29 Dekabr ", 4203, imageList.get(57), false));
         return autoCarList;
     }
 

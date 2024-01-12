@@ -33,7 +33,7 @@ public class InfoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_info);
 
         Intent intent = getIntent();
-        AutoCar car =  intent.getParcelableExtra("car");
+        AutoCar car = intent.getParcelableExtra("car");
 
         titleTv = findViewById(R.id.titleTv);
         image = findViewById(R.id.carImage);
@@ -45,7 +45,7 @@ public class InfoActivity extends AppCompatActivity {
         colorTv = findViewById(R.id.colorTv);
         backButton = findViewById(R.id.backBtn);
 
-        Picasso.get().load(car.getImageList().get(0)).into(image);
+        Picasso.get().load(car.getImageList() == null ? "" : car.getImageList()).into(image);
         carName.setText(car.getName());
         carPrice.setText((int) car.getPrice() + " $");
         regionTv.setText(car.getRegion());

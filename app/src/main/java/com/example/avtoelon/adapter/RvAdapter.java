@@ -42,7 +42,7 @@ public class RvAdapter extends RecyclerView.Adapter<RvAdapter.MyVH> {
         holder.odometer.setText(String.valueOf(list.get(position).getOdometer()));
         holder.date.setText(list.get(position).getPublishedDate());
         holder.showCount.setText(String.valueOf(list.get(position).getShow_count()));
-        Picasso.get().load(list.get(position).getImageList().get(0)).into(holder.image);
+        Picasso.get().load(list.get(position).getImageList()).into(holder.image);
         holder.itemView.setOnClickListener(view -> listener.onItemClick(list.get(position), position));
 
         holder.delete.setOnClickListener(v -> listener.onItemDelete(list.get(position), position));

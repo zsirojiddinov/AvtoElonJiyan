@@ -4,10 +4,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.room.ColumnInfo;
+import androidx.room.Entity;
+import androidx.room.PrimaryKey;
 
-import java.util.List;
-
+@Entity(tableName = "autocar")
 public class AutoCar implements Parcelable {
+    @ColumnInfo(name = "id")
+    @PrimaryKey(autoGenerate = true)
     private int id;
     private String name;
     private String company;
@@ -19,14 +23,13 @@ public class AutoCar implements Parcelable {
     private double price;
     private String publishedDate;
     private int show_count;
-    private List<String> imageList;
+    private String imageList;
     private boolean isLike;
 
-    public AutoCar(int id, String name, String company,
-                   String position, String year, String region,
-                   String odometer, String color, double price,
-                   String publishedDate, int show_count,
-                   List<String> imageList) {
+    public AutoCar() {
+    }
+
+    public AutoCar(int id, String name, String company, String position, String year, String region, String odometer, String color, double price, String publishedDate, int show_count, String imageList, boolean isLike) {
         this.id = id;
         this.name = name;
         this.company = company;
@@ -39,7 +42,7 @@ public class AutoCar implements Parcelable {
         this.publishedDate = publishedDate;
         this.show_count = show_count;
         this.imageList = imageList;
-        this.isLike = false;
+        this.isLike = isLike;
     }
 
     protected AutoCar(Parcel in) {
@@ -54,7 +57,7 @@ public class AutoCar implements Parcelable {
         price = in.readDouble();
         publishedDate = in.readString();
         show_count = in.readInt();
-        imageList = in.createStringArrayList();
+        imageList = in.readString();
         isLike = in.readByte() != 0;
     }
 
@@ -69,25 +72,6 @@ public class AutoCar implements Parcelable {
             return new AutoCar[size];
         }
     };
-
-    @Override
-    public String toString() {
-        return "AutoCar{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", company='" + company + '\'' +
-                ", position='" + position + '\'' +
-                ", year='" + year + '\'' +
-                ", region='" + region + '\'' +
-                ", odometer='" + odometer + '\'' +
-                ", color='" + color + '\'' +
-                ", price=" + price +
-                ", publishedDate='" + publishedDate + '\'' +
-                ", show_count=" + show_count +
-                ", imageList=" + imageList +
-                ", isLike=" + isLike +
-                '}';
-    }
 
     public int getId() {
         return id;
@@ -177,11 +161,11 @@ public class AutoCar implements Parcelable {
         this.show_count = show_count;
     }
 
-    public List<String> getImageList() {
+    public String getImageList() {
         return imageList;
     }
 
-    public void setImageList(List<String> imageList) {
+    public void setImageList(String imageList) {
         this.imageList = imageList;
     }
 
@@ -199,19 +183,19 @@ public class AutoCar implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(@NonNull Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(name);
-        dest.writeString(company);
-        dest.writeString(position);
-        dest.writeString(year);
-        dest.writeString(region);
-        dest.writeString(odometer);
-        dest.writeString(color);
-        dest.writeDouble(price);
-        dest.writeString(publishedDate);
-        dest.writeInt(show_count);
-        dest.writeStringList(imageList);
-        dest.writeByte((byte) (isLike ? 1 : 0));
+    public void writeToParcel(@NonNull Parcel parcel, int i) {
+        parcel.writeInt(id);
+        parcel.writeString(name);
+        parcel.writeString(company);
+        parcel.writeString(position);
+        parcel.writeString(year);
+        parcel.writeString(region);
+        parcel.writeString(odometer);
+        parcel.writeString(color);
+        parcel.writeDouble(price);
+        parcel.writeString(publishedDate);
+        parcel.writeInt(show_count);
+        parcel.writeString(imageList);
+        parcel.writeByte((byte) (isLike ? 1 : 0));
     }
 }
